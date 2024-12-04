@@ -1,0 +1,37 @@
+services:
+  postgres:
+    image: postgres:16
+    container_name: postgres
+    ports:
+      - "5432:5432"
+    env_file:
+      - docker.env
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - tpdb-dev
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin
+    ports:
+      - "5050:80"
+    env_file:
+      - docker.env
+    networks:
+      - tpdb-dev
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+  mailhog:
+    image: mailhog/mailhog
+    container_name: mailhog
+    ports:
+      - "1025:1025"
+      - "8025:8025"
+    networks:
+      - tpdb-dev
+volumes:
+  postgres-data:
+  pgadmin-data:
+networks:
+  tpdb-dev:
+    driver: bridge
