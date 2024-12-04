@@ -23,7 +23,7 @@ jobs:
       - name: install deps
         run: npm install
       - name: test
-        run: npx nx affected test
+        run: npx nx affected -t test
       - name: SonarQube Cloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
