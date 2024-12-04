@@ -3,6 +3,8 @@ export default {
   preset: '../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   coverageDirectory: '../../coverage/apps/tpdb-admin-portal',
+  coverageReporters:["lcov", "json"],
+  collectCoverage: true,
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',
