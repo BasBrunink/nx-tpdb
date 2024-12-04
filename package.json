@@ -2,7 +2,15 @@
   "name": "@nx-tpdb/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "typeorm": "ts-node ./node_modules/typeorm/cli",
+    "typeorm:run-migrations": "npm run typeorm migration:run -- -d ./apps/tpdb-backend-mono/src/app/config/typeOrm.config.ts",
+    "typeorm:generate-migration": "npm run typeorm -- -d  migration:generate ./apps/tpdb-backend-mono/migrations/structure/$npm_config_name",
+    "typeorm:create-migration:dummy": "npm run typeorm -- migration:create ./apps/tpdb-backend-mono/migrations/dummy/$npm_config_name",
+    "typeorm:create-migration:seed": "npm run typeorm -- migration:create ./apps/tpdb-backend-mono/migrations/seed/$npm_config_name",
+    "typeorm:create-migration:structure": "npm run typeorm -- migration:create ./apps/tpdb-backend-mono/migrations/structure/$npm_config_name",
+    "typeorm:revert-migration": "npm run typeorm -- -d ./src/config/typeOrm.config.ts migration:revert"
+  },
   "private": true,
   "dependencies": {
     "@angular/animations": "~18.2.0",
@@ -20,6 +28,7 @@
     "@nestjs/typeorm": "^10.0.2",
     "@hapi/joi": "17.1.1",
     "axios": "^1.6.0",
+    "dotenv": "16.4.5",
     "pg": "^8.13.1",
     "react": "18.3.1",
     "react-dom": "18.3.1",
