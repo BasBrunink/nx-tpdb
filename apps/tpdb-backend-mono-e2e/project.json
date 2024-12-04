@@ -1,0 +1,17 @@
+{
+  "name": "tpdb-backend-mono-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "implicitDependencies": ["tpdb-backend-mono"],
+  "targets": {
+    "e2e": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/{e2eProjectRoot}"],
+      "options": {
+        "jestConfig": "apps/tpdb-backend-mono-e2e/jest.config.ts",
+        "passWithNoTests": true
+      },
+      "dependsOn": ["tpdb-backend-mono:build"]
+    }
+  }
+}
