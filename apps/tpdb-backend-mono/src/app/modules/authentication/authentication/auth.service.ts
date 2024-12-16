@@ -2,11 +2,18 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { UserService} from '../user/user.service';
 import { UserJWTResponseDTO, UserLoginDto, UserRegistrationDto ,UserJwtResponse } from '@nx-tpdb/shared';
 import {JwtService } from '@nestjs/jwt'
+import { User } from '../user/entities/user.entity';
 
 
 @Injectable()
 export class AuthService {
   constructor(private userService: UserService, private jwtService: JwtService) {}
+
+
+  async validateUserByUsername(username: string): Promise<User> {
+    return this.userService.findOneByUsername(username)
+  }
+
 
   async register(dto: UserRegistrationDto) {
     const user = await this.userService.create(dto);

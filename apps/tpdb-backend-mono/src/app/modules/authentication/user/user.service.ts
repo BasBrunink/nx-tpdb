@@ -52,13 +52,12 @@ export class UserService {
   async login(dto: UserLoginDto): Promise<UserResponseDto> {
     const {username, password} = dto;
     const user = await this.findOneByUsername(username);
-    if(user && (await this._validateUser(user, password))) {
+    if(user && (await this.validateUser(user, password))) {
       return  new UserResponseDto(user.username, user.role)
     } else return null;
   }
 
-
-  private async _validateUser(user: User, password: string): Promise<boolean> {
+  async validateUser(user: User, password: string): Promise<boolean> {
     return await bcrypt.compare(password, user.password)
   }
 
