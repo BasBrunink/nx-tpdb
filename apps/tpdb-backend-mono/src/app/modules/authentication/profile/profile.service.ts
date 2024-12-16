@@ -1,11 +1,29 @@
 import { Injectable } from '@nestjs/common';
-import { CreateProfileDto } from '../../../../../../../libs/shared/src/lib/dto/profile/create-profile.dto';
-import { UpdateProfileDto } from '../../../../../../../libs/shared/src/lib/dto/profile/update-profile.dto';
+import { CreateProfileDto } from '@nx-tpdb/shared';
+import { UpdateProfileDto } from '@nx-tpdb/shared';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Profile } from './entities/profile.entity';
+import { Repository } from 'typeorm';
 
 @Injectable()
 export class ProfileService {
-  create(createProfileDto: CreateProfileDto) {
-    return 'This action adds a new profile';
+
+  constructor(
+    @InjectRepository(Profile)
+    private profileRepo: Repository<Profile>
+  ) {
+  }
+  async create(dto: CreateProfileDto): Promise<Profile> {
+    const pts = new Profile()
+    pts.firstname = dto.firstname;
+    pts.lastname = dto.lastname;
+    pts.dateofBirth = dto.dateofBirth;
+    pts.email = dto.email;
+
+    const created = this.profileRepo.create(pts)
+    return await this.profileRepo.save(created);
+
+
   }
 
   findAll() {

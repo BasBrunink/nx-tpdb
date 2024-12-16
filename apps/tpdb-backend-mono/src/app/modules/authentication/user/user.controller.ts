@@ -1,6 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { UserService } from './user.service';
-import { UserRegistrationDto } from '@nx-tpdb/shared';
+import { CreateProfileDto, UserRegistrationDto } from '@nx-tpdb/shared';
+import { ApiBody } from '@nestjs/swagger';
 
 
 
@@ -28,6 +29,11 @@ export class UserController {
   @Patch(':id')
   update(@Param('id') id: string, @Body() updateUserDto: UserRegistrationDto) {
     return this.userService.update(id, updateUserDto);
+  }
+
+  @Post(':userId/profile')
+  async addProfile(@Param('userId') userId: string, @Body() dto: CreateProfileDto) {
+    return this.userService.addProfileToUser(userId, dto);
   }
 
   @Delete(':id')

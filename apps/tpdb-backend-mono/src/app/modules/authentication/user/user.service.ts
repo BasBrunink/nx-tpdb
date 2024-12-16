@@ -1,16 +1,24 @@
-import { Injectable } from '@nestjs/common';
-import { UserLoginDto, UserRegistrationDto, UserResponseDto } from '@nx-tpdb/shared';
+import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  CreateProfileDto,
+  UserLoginDto,
+  UserRegistrationDto,
+  UserResponseDto,
+} from '@nx-tpdb/shared';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
 import { Repository } from 'typeorm';
 
 import * as bcrypt from 'bcrypt';
 
+import { ProfileService } from '../profile/profile.service';
+
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User)
     private userRepository: Repository<User>,
+    private profileService: ProfileService
   ) {}
 
   async create(createUserDto: UserRegistrationDto): Promise<User> {
@@ -36,13 +44,13 @@ export class UserService {
   }
 
   update(id: string, updateUserDto: UserRegistrationDto) {
-    const user = this.userRepository.findOne({where:{id}})
+    const user = this.userRepository.findOne({ where: { id } });
     //TODO: Check if this works
     const updatedUser = {
       ...user,
       ...updateUserDto,
-    }
-    return this.userRepository.save(updatedUser)
+    };
+    return this.userRepository.save(updatedUser);
   }
 
   remove(id: number) {
@@ -50,19 +58,34 @@ export class UserService {
   }
 
   async login(dto: UserLoginDto): Promise<UserResponseDto> {
-    const {username, password} = dto;
+    const { username, password } = dto;
     const user = await this.findOneByUsername(username);
-    if(user && (await this.validateUser(user, password))) {
-      return  new UserResponseDto(user.username, user.role)
+    if (user && (await this.validateUser(user, password))) {
+      return new UserResponseDto(user.username, user.role);
     } else return null;
   }
 
-  async validateUser(user: User, password: string): Promise<boolean> {
-    return await bcrypt.compare(password, user.password)
+  async addProfileToUser(
+    userId: string,
+    profileData: CreateProfileDto
+  ): Promise<User> {
+    const user = await this.userRepository.findOne({
+      where: { id: userId },
+      relations: ['profile'],
+    });
+    if (!user) {
+      throw new NotFoundException('User not found');
+    }
+    user.profile = await this.profileService.create(profileData);
+    return this.userRepository.save(user);
   }
 
-  private async _hashPassword(password: string): Promise<string>{
+  async validateUser(user: User, password: string): Promise<boolean> {
+    return await bcrypt.compare(password, user.password);
+  }
+
+  private async _hashPassword(password: string): Promise<string> {
     const salt = await bcrypt.genSalt(10);
-    return await bcrypt.hash(password, salt );
+    return await bcrypt.hash(password, salt);
   }
 }
