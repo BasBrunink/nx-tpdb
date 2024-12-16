@@ -32,11 +32,11 @@ export class UserService {
   }
 
   async findAll(): Promise<User[]> {
-    return await this.userRepository.find();
+    return await this.userRepository.find({relations: ['profile']});
   }
 
   async findOneById(id: string) {
-    return this.userRepository.findOne({ where: { id } });
+    return this.userRepository.findOne({ where: { id }, relations: ['profile'] });
   }
 
   async findOneByUsername(username: string) {
