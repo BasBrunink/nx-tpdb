@@ -1,7 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { ProfileService } from './profile.service';
-import { CreateProfileDto } from '../../../../../../../libs/shared/src/lib/dto/profile/create-profile.dto';
-import { UpdateProfileDto } from '../../../../../../../libs/shared/src/lib/dto/profile/update-profile.dto';
+import { CreateProfileDto, UpdateProfileDto } from '@nx-tpdb/shared';
 
 @Controller('profile')
 export class ProfileController {
