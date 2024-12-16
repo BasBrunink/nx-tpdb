@@ -1,23 +1,37 @@
 import { Injectable } from '@nestjs/common';
 import { UserRegistrationDto } from '@nx-tpdb/shared';
+import { InjectRepository } from '@nestjs/typeorm';
+import { User } from './entities/user.entity';
+import { Repository } from 'typeorm';
 
 
 @Injectable()
 export class UserService {
-  create(createUserDto: UserRegistrationDto) {
-    return 'This action adds a new user';
+
+  constructor(
+    @InjectRepository(User)
+    private userRepository: Repository<User>
+  ) {
   }
 
-  findAll() {
-    return `This action returns all user`;
+  async create(createUserDto: UserRegistrationDto): Promise<User> {
+    const user: User = {
+      ...createUserDto
+    }
+    const createdUser = this.userRepository.create(user);
+    return await this.userRepository.save(createdUser);
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  async findAll(): Promise<User[]> {
+    return await this.userRepository.find()
   }
 
-  update(id: number, updateUserDto: UserRegistrationDto) {
-    return `This action updates a #${id} user`;
+  async findOne(id: string) {
+    return this.userRepository.findOne({where:{id}})
+  }
+
+  update(id: string, updateUserDto: UserRegistrationDto) {
+
   }
 
   remove(id: number) {

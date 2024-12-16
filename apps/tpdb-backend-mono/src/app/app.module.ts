@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { DatabaseModule } from './modules/database/database.module';
 import { ConfigModule } from '@nestjs/config';
 import Joi from 'joi';
+import { AuthenticationModule } from './modules/authentication/authentication/authentication.module';
 
 @Module({
   imports: [
@@ -19,7 +20,7 @@ import Joi from 'joi';
         JWT_EXPIRATION_TIME: Joi.string().required(),
       })
     }),
-    DatabaseModule],
+    DatabaseModule, AuthenticationModule],
   controllers: [AppController],
   providers: [AppService],
 })
