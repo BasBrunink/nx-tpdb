@@ -17,7 +17,7 @@ export class ProfileService {
     const pts = new Profile()
     pts.firstname = dto.firstname;
     pts.lastname = dto.lastname;
-    pts.dateofBirth = dto.dateofBirth;
+    pts.dateOfBirth = dto.dateOfBirth;
     pts.email = dto.email;
 
     const created = this.profileRepo.create(pts)

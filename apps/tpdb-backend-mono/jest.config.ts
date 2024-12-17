@@ -8,5 +8,4 @@ export default {
   moduleFileExtensions: ['ts', 'js', 'html'],
   coverageDirectory: '../../coverage/apps/tpdb-backend-mono',
   coverageReporters:["lcov", "json"],
-  collectCoverage: true,
 };

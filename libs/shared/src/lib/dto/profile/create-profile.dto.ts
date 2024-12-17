@@ -5,15 +5,15 @@ export class CreateProfileDto {
 
   lastname: string;
 
-  dateofBirth: Date;
+  dateOfBirth: Date;
 
   email: string;
 
 
-  constructor(firstname: string, lastname: string, dateofBirth: Date, email: string) {
+  constructor(firstname: string, lastname: string, dateOfBirth: Date, email: string) {
     this.firstname = firstname;
     this.lastname = lastname;
-    this.dateofBirth = dateofBirth;
+    this.dateOfBirth = dateOfBirth;
     this.email = email;
   }
 }

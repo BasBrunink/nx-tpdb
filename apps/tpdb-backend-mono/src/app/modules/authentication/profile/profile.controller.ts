@@ -1,7 +1,17 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, UseGuards } from '@nestjs/common';
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Patch,
+  Post,
+  UseGuards,
+} from '@nestjs/common';
 import { ProfileService } from './profile.service';
-import { CreateProfileDto, UpdateProfileDto } from '@nx-tpdb/shared';
+import { CreateProfileDto, Role, UpdateProfileDto } from '@nx-tpdb/shared';
 import { JwtAuthGuard } from '../authentication/jwt.guard';
+import { Roles } from '../authentication/roles.decorator';
 
 @Controller('profile')
 export class ProfileController {

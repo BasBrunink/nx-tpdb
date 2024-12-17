@@ -5,6 +5,8 @@ import { DatabaseModule } from './modules/database/database.module';
 import { ConfigModule } from '@nestjs/config';
 import Joi from 'joi';
 import { AuthenticationModule } from './modules/authentication/authentication/authentication.module';
+import { APP_GUARD } from '@nestjs/core';
+import { RolesGuard } from './modules/authentication/authentication/roles.guard';
 
 @Module({
   imports: [
@@ -22,6 +24,7 @@ import { AuthenticationModule } from './modules/authentication/authentication/au
     }),
     DatabaseModule, AuthenticationModule],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService,
+  ],
 })
 export class AppModule {}

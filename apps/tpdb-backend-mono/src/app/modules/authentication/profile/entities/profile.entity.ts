@@ -13,7 +13,7 @@ export class Profile {
   @Column()
   lastname: string;
   @Column()
-  dateofBirth: Date;
+  dateOfBirth: Date;
   @Column()
   email: string;
 }
