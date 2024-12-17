@@ -12,14 +12,13 @@ import { DeleteResult, Repository } from 'typeorm';
 import * as bcrypt from 'bcrypt';
 
 import { ProfileService } from '../profile/profile.service';
-import { s } from 'vitest/dist/reporters-yx5ZTtEV';
 
 @Injectable()
 export class UserService {
   constructor(
     @InjectRepository(User)
-    private userRepository: Repository<User>,
-    private profileService: ProfileService
+    private readonly userRepository: Repository<User>,
+    private readonly profileService: ProfileService
   ) {}
 
   async create(createUserDto: UserRegistrationDto): Promise<User> {
@@ -33,19 +32,22 @@ export class UserService {
   }
 
   async findAll(): Promise<User[]> {
-    return await this.userRepository.find({relations: ['profile']});
+    return await this.userRepository.find({ relations: ['profile'] });
   }
 
   async findOneById(id: string) {
-    return this.userRepository.findOne({ where: { id }, relations: ['profile'] });
+    return this.userRepository.findOne({
+      where: { id },
+      relations: ['profile'],
+    });
   }
 
   async findOneByUsername(username: string) {
     return this.userRepository.findOne({ where: { username } });
   }
 
-  update(id: string, updateUserDto: UserRegistrationDto) {
-    const user = this.userRepository.findOne({ where: { id } });
+  async update(id: string, updateUserDto: UserRegistrationDto) {
+    const user = await this.userRepository.findOne({ where: { id } });
     //TODO: Check if this works
     const updatedUser = {
       ...user,
@@ -55,7 +57,7 @@ export class UserService {
   }
 
   remove(id: string): Promise<DeleteResult> {
-    return this.userRepository.delete(id)
+    return this.userRepository.delete(id);
   }
 
   async login(dto: UserLoginDto): Promise<UserResponseDto> {
