@@ -113,7 +113,7 @@ describe('ProfileController', () => {
   })
 });
 
-function generateMockProfiles(amnt: number): Profile[] {
+export function generateMockProfiles(amnt: number): Profile[] {
   const result : Profile[] = []
   for (let i = 0; i < amnt; i++) {
     const inter: Profile = new Profile()
