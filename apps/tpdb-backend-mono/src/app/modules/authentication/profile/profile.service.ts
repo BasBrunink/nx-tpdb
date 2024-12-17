@@ -30,15 +30,15 @@ export class ProfileService {
     return `This action returns all profile`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} profile`;
+  findOne(id: string) {
+    return this.profileRepo.findOne({where: {id}, })
   }
 
-  update(id: number, updateProfileDto: UpdateProfileDto) {
+  update(id: string, updateProfileDto: UpdateProfileDto) {
     return `This action updates a #${id} profile`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} profile`;
   }
 }
