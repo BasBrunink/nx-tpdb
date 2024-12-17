@@ -3,7 +3,7 @@ import { CreateProfileDto } from '@nx-tpdb/shared';
 import { UpdateProfileDto } from '@nx-tpdb/shared';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Profile } from './entities/profile.entity';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 
 @Injectable()
 export class ProfileService {
@@ -27,18 +27,21 @@ export class ProfileService {
   }
 
   findAll() {
-    return `This action returns all profile`;
+    return this.profileRepo.find();
   }
 
   findOne(id: string) {
     return this.profileRepo.findOne({where: {id}, })
   }
 
-  update(id: string, updateProfileDto: UpdateProfileDto) {
-    return `This action updates a #${id} profile`;
+  update(id: string, updateProfileDto: UpdateProfileDto): Promise<Profile> {
+    return this.profileRepo.save({
+      id: id,
+      ...updateProfileDto
+    })
   }
 
-  remove(id: string) {
-    return `This action removes a #${id} profile`;
+  remove(id: string): Promise<DeleteResult> {
+    return this.profileRepo.delete(id)
   }
 }
