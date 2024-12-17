@@ -7,11 +7,12 @@ import {
 } from '@nx-tpdb/shared';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from './entities/user.entity';
-import { Repository } from 'typeorm';
+import { DeleteResult, Repository } from 'typeorm';
 
 import * as bcrypt from 'bcrypt';
 
 import { ProfileService } from '../profile/profile.service';
+import { s } from 'vitest/dist/reporters-yx5ZTtEV';
 
 @Injectable()
 export class UserService {
@@ -53,8 +54,8 @@ export class UserService {
     return this.userRepository.save(updatedUser);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} user`;
+  remove(id: string): Promise<DeleteResult> {
+    return this.userRepository.delete(id)
   }
 
   async login(dto: UserLoginDto): Promise<UserResponseDto> {

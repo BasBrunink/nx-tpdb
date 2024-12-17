@@ -2,6 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { UserService } from './user.service';
 import { CreateProfileDto, UserRegistrationDto } from '@nx-tpdb/shared';
 import { ApiBody } from '@nestjs/swagger';
+import { User } from './entities/user.entity';
 
 
 
@@ -10,7 +11,7 @@ export class UserController {
   constructor(private readonly userService: UserService) {}
 
   @Post()
-  create(@Body() createUserDto: UserRegistrationDto) {
+  create(@Body() createUserDto: UserRegistrationDto): Promise<User> {
     return this.userService.create(createUserDto);
   }
 
@@ -35,6 +36,6 @@ export class UserController {
 
   @Delete(':id')
   remove(@Param('id') id: string) {
-    return this.userService.remove(+id);
+    return this.userService.remove(id);
   }
 }
