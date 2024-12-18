@@ -11,10 +11,10 @@ describe('ProfileService', () => {
   let repo: Repository<Profile>
 
   const mockRepo = {
+    create: jest.fn(),
+    save: jest.fn(),
     findOne: jest.fn(),
     find: jest.fn(),
-    save: jest.fn(),
-    create: jest.fn(),
     delete: jest.fn()
   }
 

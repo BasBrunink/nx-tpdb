@@ -85,7 +85,7 @@ export class UserService {
     return await bcrypt.compare(password, user.password);
   }
 
-  private async _hashPassword(password: string): Promise<string> {
+  async _hashPassword(password: string): Promise<string> {
     const salt = await bcrypt.genSalt(10);
     return await bcrypt.hash(password, salt);
   }
