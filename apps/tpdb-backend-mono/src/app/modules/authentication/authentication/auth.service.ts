@@ -7,13 +7,14 @@ import { User } from '../user/entities/user.entity';
 
 @Injectable()
 export class AuthService {
-  constructor(private userService: UserService, private jwtService: JwtService) {}
-
+  constructor(
+    private readonly userService: UserService,
+    private readonly jwtService: JwtService
+  ) {}
 
   async validateUserByUsername(username: string): Promise<User> {
-    return this.userService.findOneByUsername(username)
+    return this.userService.findOneByUsername(username);
   }
-
 
   async register(dto: UserRegistrationDto) {
     const user = await this.userService.create(dto);
@@ -22,19 +23,18 @@ export class AuthService {
   }
 
   async login(dto: UserLoginDto): Promise<UserJwtResponse> {
-    const userResult = await this.userService.login(dto)
+    const userResult = await this.userService.login(dto);
 
-    if(!userResult) {
-      throw new UnauthorizedException('Invalid Credentials')
+    if (!userResult) {
+      throw new UnauthorizedException('Invalid Credentials');
     }
     const user = await this.userService.findOneByUsername(userResult.username);
-    const payload: UserJWTResponseDTO = {username: user.username, userId: user.id, role:  user.role}
-    const accessToken = this.jwtService.sign(payload)
-    return {user: payload, accessToken} as UserJwtResponse
-
+    const payload: UserJWTResponseDTO = {
+      username: user.username,
+      userId: user.id,
+      role: user.role,
+    };
+    const accessToken = this.jwtService.sign(payload);
+    return { user: payload, accessToken } as UserJwtResponse;
   }
-
-
-
-
 }
