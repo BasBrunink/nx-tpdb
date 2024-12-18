@@ -1,2 +1,13 @@
-<h1>{{'app.component.header' | translate}}</h1>
-<router-outlet></router-outlet>
+@if(showHeader) {
+  <app-header (toggleSideNav)="drawer.toggle()"></app-header>
+}
+<mat-sidenav-container class="container">
+  <mat-sidenav #drawer class="sidenav" mode="side">
+    <app-sidebar></app-sidebar>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
