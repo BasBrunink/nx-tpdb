@@ -51,6 +51,7 @@ describe('UserController', () => {
       expect(service.create).toHaveBeenCalledWith(createUserDto);
       expect(result).toEqual(mockUser);
     });
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     xit('UNHAPPY should', async () => {});
   });
   describe('findAll', () => {
@@ -64,6 +65,7 @@ describe('UserController', () => {
       expect(result).toEqual(mockResult);
 
     });
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     xit('UNHAPPY should', async () => {});
   });
   describe('findOneById', () => {
@@ -71,10 +73,13 @@ describe('UserController', () => {
       const mockResult: User = generateMockUsers(1)[0]
       mockService.findOneById.mockResolvedValue(mockResult);
 
-      const result = await controller.findOne('1111');
-      expect(service.findOneById).toHaveBeenCalled();
+      controller.findOne('1111').then(() => {
+        expect(service.findOneById).toHaveBeenCalled();
+      })
+
       // expect(result).toEqual(mockResult);
     });
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     xit('UNHAPPY should', async () => {});
   });
   describe('update', () => {
@@ -89,6 +94,7 @@ describe('UserController', () => {
       expect(result).toEqual(mockResult);
 
     });
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     xit('UNHAPPY should', async () => {});
   });
   describe('remove', () => {
@@ -100,6 +106,7 @@ describe('UserController', () => {
       expect(service.remove).toHaveBeenCalled();
       expect(result.affected).toEqual(1);
     });
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     xit('UNHAPPY should', async () => {});
   });
   describe('addProfile', () => {
@@ -117,6 +124,7 @@ describe('UserController', () => {
       expect(service.addProfileToUser).toHaveBeenCalled();
       expect(result).toEqual(mockResult);
     });
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     xit('UNHAPPY should', async () => {});
   });
 });

@@ -3,7 +3,6 @@ import { ProfileController } from './profile.controller';
 import { ProfileService } from './profile.service';
 import { CreateProfileDto } from '@nx-tpdb/shared';
 import { Profile } from './entities/profile.entity';
-import mock = jest.mock;
 import { DeleteResult } from 'typeorm';
 
 describe('ProfileController', () => {
@@ -52,6 +51,7 @@ describe('ProfileController', () => {
       expect(service.create).toHaveBeenCalledWith(createProfileDto);
       expect(result).toEqual(mockProfile);
     });
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     xit('should return an error when the service return an error', () => {
 
     })
@@ -67,6 +67,7 @@ describe('ProfileController', () => {
 
 
     })
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     xit('should return an error when the service return an error', () => {
 
     })
@@ -80,6 +81,7 @@ describe('ProfileController', () => {
       expect(service.findOne).toHaveBeenCalled();
       expect(result).toEqual(mockResult);
     })
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     xit('should return an error when the service return an error', () => {
 
     })
@@ -93,6 +95,7 @@ describe('ProfileController', () => {
       expect(service.update).toHaveBeenCalled();
       expect(result).toEqual(mockResult);
     })
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     xit('should return an error when the service return an error', () => {
 
     })
@@ -107,6 +110,7 @@ describe('ProfileController', () => {
       expect(service.remove).toHaveBeenCalled();
       expect(result.affected).toEqual(1);
     })
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     xit('should return an error when the service return an error', () => {
 
     })

@@ -8,6 +8,7 @@ import { User } from '../user/entities/user.entity';
 describe('AuthService', () => {
   let service: AuthService;
   let userService: UserService;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let jwtService: JwtService;
 
   const mockUserService = {
@@ -38,7 +39,7 @@ describe('AuthService', () => {
   });
   describe('validateUserByUsername', () => {
     it('should call findOneByUSername in the user service', async () => {
-      service.validateUserByUsername('').then((res) => {
+      service.validateUserByUsername('').then(() => {
         expect(userService.findOneByUsername).toHaveBeenCalled();
       });
 
@@ -80,8 +81,5 @@ describe('AuthService', () => {
         expect(res.user.username).toEqual('test');
       });
     });
-    xit('should return an Exception when we cannot login', () => {
-
-    })
   });
 });

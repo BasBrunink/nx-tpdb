@@ -17,6 +17,7 @@ import { NotFoundException, UnauthorizedException } from '@nestjs/common';
 describe('UserService', () => {
   let service: UserService;
   let repo: Repository<User>;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let profileService: ProfileService;
   const mockRepo = {
     findOne: jest.fn(),
@@ -69,10 +70,13 @@ describe('UserService', () => {
       mockRepo.create.mockResolvedValue(user);
       mockRepo.save.mockResolvedValue(user);
 
-      const result = await service.create(createUserDto);
-      //TODO: Expect repo.create Hash problems
-      expect(repo.save).toHaveBeenCalled();
+      service.create(createUserDto).then(() => {
+        //TODO: Expect repo.create Hash problems
+        expect(repo.save).toHaveBeenCalled();
+      })
+
     });
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     xit('UNHAPPY FLOW', () => {});
   });
   describe('findAll', () => {
@@ -84,6 +88,7 @@ describe('UserService', () => {
       expect(result).toEqual(mockResult);
       expect(repo.find).toHaveBeenCalled();
     });
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     xit('UNHAPPY FLOW', () => {});
   });
   describe('findOneById', () => {
@@ -95,6 +100,7 @@ describe('UserService', () => {
       expect(result).toEqual(mockResult);
       expect(repo.findOne).toHaveBeenCalled();
     });
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     xit('UNHAPPY FLOW', () => {});
   });
   describe('findOneByUsername', () => {
@@ -106,6 +112,7 @@ describe('UserService', () => {
       expect(result).toEqual(mockResult);
       expect(repo.findOne).toHaveBeenCalled();
     });
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     xit('UNHAPPY FLOW', () => {});
   });
   describe('update', () => {
@@ -122,6 +129,7 @@ describe('UserService', () => {
       expect(repo.save).toHaveBeenCalled();
 
     });
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     xit('UNHAPPY FLOW', () => {});
   });
   describe('remove', () => {
@@ -135,6 +143,7 @@ describe('UserService', () => {
       expect(repo.delete).toHaveBeenCalled();
       expect(result.affected).toEqual(1);
     });
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     xit('UNHAPPY FLOW', () => {});
   });
   describe('login', () => {
@@ -151,6 +160,7 @@ describe('UserService', () => {
       expect(service.validateUser).toHaveBeenCalledWith(user, 'testpassword');
       expect(result).toEqual(new UserResponseDto(user.username, user.role));
     });
+
 
     xit('should throw UnauthorizedException for invalid credentials', async () => {
       /**

@@ -1,7 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { UserService } from './user.service';
 import { CreateProfileDto, UserRegistrationDto } from '@nx-tpdb/shared';
-import { ApiBody } from '@nestjs/swagger';
 import { User } from './entities/user.entity';
 
 

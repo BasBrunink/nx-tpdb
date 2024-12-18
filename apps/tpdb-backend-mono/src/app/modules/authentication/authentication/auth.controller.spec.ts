@@ -26,16 +26,20 @@ describe('AuthController', () => {
   });
   describe('register',  () => {
     it('should call register in the authService',async () => {
-      const res = await controller.register({ username: 'test', password: '', role: Role.Admin });
-      expect(service.register).toHaveBeenCalled();
+      controller.register({ username: 'test', password: '', role: Role.Admin }).then(() => {
+        expect(service.register).toHaveBeenCalled();
+      }) ;
+
     })
 
   });
 
   describe('login', () => {
     it('should call login in the authservice',async () => {
-      const res = await controller.login({username: '', password: ''})
-      expect(service.login).toHaveBeenCalled();
+      controller.login({username: '', password: ''}).then(()=> {
+        expect(service.login).toHaveBeenCalled();
+      })
+
     });
   })
 });

@@ -52,6 +52,7 @@ describe('ProfileService', () => {
       expect(repo.create).toHaveBeenCalledWith(createProfileDto);
       expect(repo.save).toHaveBeenCalled();
     });
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     xit('should unhappy', async () => {
 
     });
@@ -66,6 +67,7 @@ describe('ProfileService', () => {
       expect(repo.find).toHaveBeenCalled();
 
     });
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     xit('should unhappy', async () => {
 
     });
@@ -82,6 +84,7 @@ describe('ProfileService', () => {
 
 
     });
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     xit('should unhappy', async () => {
 
     });
@@ -102,6 +105,7 @@ describe('ProfileService', () => {
       expect(repo.save).toHaveBeenCalled();
 
     });
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     xit('should unhappy', async () => {
 
     });
@@ -116,6 +120,7 @@ describe('ProfileService', () => {
       expect(repo.delete).toHaveBeenCalled();
       expect(result.affected).toEqual(1);
     });
+    // eslint-disable-next-line @typescript-eslint/no-empty-function
     xit('should unhappy', async () => {
 
     });
