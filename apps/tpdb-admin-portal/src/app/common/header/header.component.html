@@ -1,0 +1,19 @@
+<mat-toolbar>
+  <button mat-icon-button class="header-icon" (click)="toggleSideNav.emit()">
+    <mat-icon>menu</mat-icon>
+  </button>
+  <span>{{'header.title' | translate }}</span>
+  <span class="spacer"></span>
+  <button  mat-icon-button class="header-icon"(click)="navToProfile()"><mat-icon>person</mat-icon></button>
+  <mat-select [value]="currentLanguage"  (selectionChange)="useLanguage($event.value)">
+    @for(lang of languageMap.keys(); track lang) {
+      <mat-option  [value]="lang">
+        <span class=" flag-icon fi {{ languageMap.get(lang)?.icon }}"></span>
+        {{ languageMap.get(lang)?.name }}
+
+      </mat-option>
+    }
+  </mat-select>
+  <button mat-icon-button class="header-icon" (click)="logout()"><mat-icon>exit_to_app</mat-icon></button>
+
+</mat-toolbar>

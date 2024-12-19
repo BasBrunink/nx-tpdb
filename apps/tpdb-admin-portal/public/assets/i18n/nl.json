@@ -1,7 +1,9 @@
 {
-	"app": {
-		"component": {
-			"header": "Ja het werkt"
-		}
+	"header": {
+		"title": "TPDB Admin Platform nl"
+	},
+	"sidemenu": {
+		"dashboard": "Dashboard",
+		"home": "Home"
 	}
 }

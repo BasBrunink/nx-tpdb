@@ -1,0 +1,9 @@
+<mat-nav-list class="menu">
+  @for(item of menuItems; track item) {
+    <mat-list-item class="menu-item">
+      <a [routerLink]="item.route" class="menu-link">
+        <span class="name">{{item.name | translate}}</span> <mat-icon>{{item.icon}}</mat-icon>
+      </a>
+    </mat-list-item>
+  }
+</mat-nav-list>
