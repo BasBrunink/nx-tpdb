@@ -64,7 +64,7 @@ export class UserService {
     const { username, password } = dto;
     const user = await this.findOneByUsername(username);
     if (user && (await this.validateUser(user, password))) {
-      return new UserResponseDto(user.username, user.role);
+      return new UserResponseDto(user.id, user.username, user.role);
     } else return null;
   }
 
