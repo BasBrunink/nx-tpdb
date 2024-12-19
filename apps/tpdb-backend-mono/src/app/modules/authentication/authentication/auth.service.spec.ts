@@ -67,7 +67,7 @@ describe('AuthService', () => {
   });
   describe('login', () => {
     it('should return a JWT token', () => {
-      const mockUserResponse: UserResponseDto = new UserResponseDto('', Role.User);
+      const mockUserResponse: UserResponseDto = new UserResponseDto('','', Role.User);
       mockUserService.login.mockResolvedValue(mockUserResponse);
       const mockUser: User = {
         username: 'test',
