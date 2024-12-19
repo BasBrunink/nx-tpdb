@@ -158,7 +158,7 @@ describe('UserService', () => {
 
       expect(service.findOneByUsername).toHaveBeenCalledWith('testuser');
       expect(service.validateUser).toHaveBeenCalledWith(user, 'testpassword');
-      expect(result).toEqual(new UserResponseDto(user.username, user.role));
+      expect(result).toEqual(new UserResponseDto('1',user.username, user.role));
     });
 
 
