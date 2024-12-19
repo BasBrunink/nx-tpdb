@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { MatCard, MatCardActions, MatCardContent, MatCardTitle } from '@angular/material/card';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -8,7 +8,7 @@ import { MatButton } from '@angular/material/button';
 import { MatInput } from '@angular/material/input';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '../../../services/authentication/authentication.service';
-import { register } from '@swc-node/register/register';
+
 import { UserLoginDto } from '@nx-tpdb/shared';
 
 @Component({
@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
         username: this.loginForm?.value.username,
         password: this.loginForm?.value.password,
       };
-      this.authenticationService.login(loginRequest).subscribe((res) => {
+      this.authenticationService.login(loginRequest).subscribe(() => {
         if (this.returnUrl != null) {
           this.router.navigate([this.returnUrl]).then();
         } else {
