@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 describe('HeaderComponent', () => {
   let component: HeaderComponent;
   let fixture: ComponentFixture<HeaderComponent>;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let translateService: TranslateService;
   let router: Router;
 

@@ -6,6 +6,7 @@ import { By } from '@angular/platform-browser';
 
 describe('SidebarComponent', () => {
   let component: SidebarComponent;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   let translateService: TranslateService
   let fixture: ComponentFixture<SidebarComponent>;
 

@@ -25,7 +25,7 @@ export class HeaderComponent {
   currentLanguage: string;
   selectedLanguage: Language;
 
-  @Output() toggleSideNav = new EventEmitter<any>();
+  @Output() toggleSideNav = new EventEmitter<never>();
 
   constructor(
     private router: Router,
