@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatListItem, MatListItemMeta, MatListItemTitle, MatNavList } from '@angular/material/list';
+import { MatListItem, MatNavList } from '@angular/material/list';
 import { MatIcon } from '@angular/material/icon';
-import { MatIconButton } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
@@ -20,9 +18,6 @@ export interface MenuItem {
   imports: [MatNavList,
     MatListItem,
     MatIcon,
-    MatListItemTitle,
-    MatIconButton,
-    MatListItemMeta,
     RouterLink,
     TranslateModule],
   templateUrl: './sidebar.component.html',

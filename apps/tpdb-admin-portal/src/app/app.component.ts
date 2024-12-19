@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationStart, Router, RouterModule } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
 import { HeaderComponent } from './common/header/header.component';
-import { MatSidenavContainer, MatSidenavContent, MatSidenavModule } from '@angular/material/sidenav';
+import { MatSidenavModule } from '@angular/material/sidenav';
 import { SidebarComponent } from './common/sidebar/sidebar.component';
 
 

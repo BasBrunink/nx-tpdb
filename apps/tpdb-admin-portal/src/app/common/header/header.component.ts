@@ -25,20 +25,23 @@ export class HeaderComponent {
   currentLanguage: string;
   selectedLanguage: Language;
 
-  @Output() toggleSideNav = new EventEmitter<any>
+  @Output() toggleSideNav = new EventEmitter<never>();
 
   constructor(
     private router: Router,
     private translate: TranslateService
   ) {
     this.currentLanguage = this.translate.currentLang || 'en';
-    this.selectedLanguage = this.languageMap.get(this.currentLanguage) as Language;
+    this.selectedLanguage = this.languageMap.get(this.currentLanguage) || { name: 'English', icon: 'fi-gb' };
   }
 
   useLanguage(language: string) {
     this.translate.use(language);
     this.currentLanguage = language;
-    this.selectedLanguage = this.languageMap.get(language) as Language;
+    const languageData = this.languageMap.get(language);
+    if (languageData) {
+      this.selectedLanguage = languageData;
+    }
   }
 
   navToProfile() {
